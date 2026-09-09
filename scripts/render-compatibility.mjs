@@ -46,6 +46,7 @@ const providerNames = {
   JUROR_FIREWORKS_API_KEY: 'Fireworks',
   JUROR_XAI_API_KEY: 'xAI',
   JUROR_OPENROUTER_API_KEY: 'OpenRouter',
+  JUROR_SCALEWAY_API_KEY: 'Scaleway',
 };
 
 for (const harnessId of Object.keys(HARNESSES)) {

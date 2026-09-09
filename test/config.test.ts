@@ -116,8 +116,24 @@ describe('defaultConfig', () => {
       'grok-4.5',
       'kimi-k3',
       'deepseek-v4-flash-0731',
+      'scaleway-deepseek-v4-flash-0731',
     ]);
     expect(ultra.consensus.referee_model).toBe('deepseek-v4-flash-0731');
+  });
+
+  it('ships DeepSeek V4 Flash on the dedicated Scaleway endpoint', () => {
+    const scaleway = applyReviewPreset(defaultConfig(), 'ultra').models.find(
+      (model) => model.id === 'scaleway-deepseek-v4-flash-0731',
+    );
+
+    expect(scaleway).toMatchObject({
+      harness: 'generic-openai',
+      secret: 'JUROR_SCALEWAY_API_KEY',
+      base_url: 'https://api.scaleway.ai/v1',
+      harness_model: 'deepseek-v4-flash-0731',
+      pricing_key: 'scaleway/deepseek-v4-flash-0731',
+      args: { reasoning_effort: 'high' },
+    });
   });
 });
 

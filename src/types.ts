@@ -163,6 +163,10 @@ export interface PricingEntry extends PricingTier {
   long_context?: PricingTier & { threshold_input_tokens: number; applies_to: 'entire_request' };
   source?: string;
   updated?: string;
+  /** Original provider currency when Juror's USD estimate uses a recorded FX rate. */
+  currency?: string;
+  usd_conversion_rate?: number;
+  conversion_source?: string;
 }
 
 export type PricingTable = Record<string, PricingEntry>;

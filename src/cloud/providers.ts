@@ -22,6 +22,7 @@ export const PRESET_PROVIDER_SECRETS: Record<ReviewPreset, readonly string[]> = 
     'JUROR_ANTHROPIC_API_KEY',
     'JUROR_XAI_API_KEY',
     'JUROR_FIREWORKS_API_KEY',
+    'JUROR_SCALEWAY_API_KEY',
   ],
 };
 

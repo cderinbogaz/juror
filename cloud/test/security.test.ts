@@ -45,6 +45,9 @@ describe('webhook security boundaries', () => {
     expect(sandbox).toContain("redirect: 'manual'");
     expect(sandbox).toContain('ReviewSandbox.outboundHandlers = jurorOutboundHandlers');
     expect(sandbox).toContain('QaSandbox.outboundHandlers = jurorOutboundHandlers');
+    expect(sandbox).toContain("hostname === 'api.scaleway.ai' ? env.SCW_SECRET_KEY");
+    expect(workflows).toContain("'api.scaleway.ai': 'authenticatedProvider'");
+    expect(workflows).toContain("JUROR_SCALEWAY_API_KEY: 'injected-by-juror-outbound-handler'");
     expect(workflows).toContain("GITHUB_TOKEN: 'injected-by-juror-outbound-handler'");
     expect(workflows).toContain("NODE_EXTRA_CA_CERTS: '/etc/cloudflare/certs/cloudflare-containers-ca.crt'");
     expect(workflows).toContain("model_providers.juror_openai_https.supports_websockets=false");

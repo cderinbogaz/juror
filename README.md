@@ -333,6 +333,7 @@ JUROR_OPENAI_API_KEY=…
 JUROR_FIREWORKS_API_KEY=…
 JUROR_XAI_API_KEY=…
 JUROR_OPENROUTER_API_KEY=…
+JUROR_SCALEWAY_API_KEY=…
 ```
 
 ---
@@ -367,6 +368,25 @@ models:
     args: { reasoning_effort: high }
 ```
 
+Scaleway's European OpenAI-compatible endpoint is also built in as
+`scaleway-deepseek-v4-flash-0731`. It uses `JUROR_SCALEWAY_API_KEY`, the
+`deepseek-v4-flash-0731` model id, and `reasoning_effort: high`; select `ultra` or
+add this route to an explicit jury:
+
+```yaml
+models:
+  - id: scaleway-deepseek-v4-flash-0731
+    harness: generic-openai
+    secret: JUROR_SCALEWAY_API_KEY
+    base_url: https://api.scaleway.ai/v1
+    harness_model: deepseek-v4-flash-0731
+    pricing_key: scaleway/deepseek-v4-flash-0731
+    args: { reasoning_effort: high }
+```
+
+For a project-scoped or dedicated Scaleway deployment, replace `base_url` with its
+public endpoint URL; do not put credentials in that URL.
+
 ---
 
 ## Configuration
@@ -380,7 +400,7 @@ Juror ships five jury presets. Models whose provider key is unavailable are skip
 | `fast` **(default)** | GPT-5.6 Luna via Codex/OpenAI (`low`) · DeepSeek V4 Flash via DeepSeek/Fireworks (`high`) | Lean two-model jury |
 | `balanced` | GPT-5.6 Terra via Codex/OpenAI (`max`) · Grok 4.5 via Grok Build/xAI (`high`) · Kimi K3 via Kimi Code/Fireworks (`max`) | Strong provider diversity without the full burn |
 | `high` | GPT-5.6 Sol via Codex/OpenAI (`high`) · Opus 5 via Claude Code/Anthropic · Grok 4.5 via Grok Build/xAI (`high`) | Higher-confidence frontier jury |
-| `ultra` | Every model from the other presets (seven total), using their higher reasoning settings | Maximum coverage; highest token and cost use |
+| `ultra` | Every built-in model (eight total), including DeepSeek V4 Flash through Scaleway | Maximum coverage; highest token and cost use |
 
 Select one in config, on the CLI, or in the Action:
 

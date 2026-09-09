@@ -51,6 +51,7 @@ const PROVIDERS = [
   { canonicalName: 'JUROR_XAI_API_KEY', label: 'xAI' },
   { canonicalName: 'JUROR_FIREWORKS_API_KEY', label: 'Fireworks' },
   { canonicalName: 'JUROR_OPENROUTER_API_KEY', label: 'OpenRouter' },
+  { canonicalName: 'JUROR_SCALEWAY_API_KEY', label: 'Scaleway' },
 ] as const;
 
 export interface InitCommandOptions {
@@ -174,7 +175,8 @@ export function renderManagedWorkflow(options: {
     `          JUROR_ANTHROPIC_API_KEY: \${{ secrets.JUROR_ANTHROPIC_API_KEY }}\n` +
     `          JUROR_XAI_API_KEY: \${{ secrets.JUROR_XAI_API_KEY }}\n` +
     `          JUROR_FIREWORKS_API_KEY: \${{ secrets.JUROR_FIREWORKS_API_KEY }}\n` +
-    `          JUROR_OPENROUTER_API_KEY: \${{ secrets.JUROR_OPENROUTER_API_KEY }}\n`;
+    `          JUROR_OPENROUTER_API_KEY: \${{ secrets.JUROR_OPENROUTER_API_KEY }}\n` +
+    `          JUROR_SCALEWAY_API_KEY: \${{ secrets.JUROR_SCALEWAY_API_KEY }}\n`;
   const digest = createHash('sha256').update(body).digest('hex');
   return `${MANAGED_PREFIX}${digest}\n${body}`;
 }

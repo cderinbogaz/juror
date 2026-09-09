@@ -38,3 +38,4 @@ jobs:
           JUROR_XAI_API_KEY: ${{ secrets.JUROR_XAI_API_KEY || secrets.XAI_API_KEY }}
           JUROR_FIREWORKS_API_KEY: ${{ secrets.JUROR_FIREWORKS_API_KEY || secrets.FIREWORKS_API_KEY }}
           JUROR_OPENROUTER_API_KEY: ${{ secrets.JUROR_OPENROUTER_API_KEY || secrets.OPENROUTER_API_KEY }}
+          JUROR_SCALEWAY_API_KEY: ${{ secrets.JUROR_SCALEWAY_API_KEY }}

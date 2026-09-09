@@ -24,6 +24,7 @@ declare global {
       DEEPSEEK_API_KEY?: string;
       FIREWORKS_API_KEY?: string;
       OPENROUTER_API_KEY?: string;
+      SCW_SECRET_KEY?: string;
       MOONSHOT_API_KEY?: string;
     }
   }
@@ -64,6 +65,7 @@ export type Env = GeneratedBindings & {
   DEEPSEEK_API_KEY?: string;
   FIREWORKS_API_KEY?: string;
   OPENROUTER_API_KEY?: string;
+  SCW_SECRET_KEY?: string;
   MOONSHOT_API_KEY?: string;
   CONTAINER_CPU_MICRO_USD_PER_VCPU_SECOND?: string;
   CONTAINER_MEMORY_MICRO_USD_PER_GIB_SECOND?: string;

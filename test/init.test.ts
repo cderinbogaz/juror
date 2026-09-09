@@ -90,6 +90,12 @@ describe('credentialReadiness', () => {
         available: false,
         source: 'JUROR_OPENROUTER_API_KEY',
       },
+      {
+        canonicalName: 'JUROR_SCALEWAY_API_KEY',
+        label: 'Scaleway',
+        available: false,
+        source: 'JUROR_SCALEWAY_API_KEY',
+      },
     ]);
     expect(readiness.runnableModels).toEqual(['gpt-5.6-luna', 'deepseek-v4-flash-0731']);
     expect(readiness.juryKind).toBe('multi-model');
@@ -139,6 +145,7 @@ describe('managed workflow', () => {
     expect(workflow).toContain('fetch-depth: 0');
     expect(workflow).toContain('filter: blob:none');
     expect(workflow).toContain('JUROR_OPENROUTER_API_KEY: ${{ secrets.JUROR_OPENROUTER_API_KEY }}');
+    expect(workflow).toContain('JUROR_SCALEWAY_API_KEY: ${{ secrets.JUROR_SCALEWAY_API_KEY }}');
     expect(workflow).toContain('# juror:init:managed sha256:');
     expect(managedWorkflowIsPristine(workflow)).toBe(true);
   });

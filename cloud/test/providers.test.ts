@@ -43,7 +43,7 @@ describe('hosted provider readiness', () => {
   });
 
   it('fails closed on a preset it does not recognise', () => {
-    const complete = env({ OPENAI_API_KEY: 'a', ANTHROPIC_API_KEY: 'b', XAI_API_KEY: 'c', FIREWORKS_API_KEY: 'd', OPENROUTER_API_KEY: 'e' });
+    const complete = env({ OPENAI_API_KEY: 'a', ANTHROPIC_API_KEY: 'b', XAI_API_KEY: 'c', FIREWORKS_API_KEY: 'd', OPENROUTER_API_KEY: 'e', SCW_SECRET_KEY: 'f' });
     expect(missingProviderSecrets(complete, 'review', 'nonexistent' as never)).toEqual(['UNKNOWN_REVIEW_PRESET']);
     expect(missingProviderSecrets(complete, 'review', 'ultra')).toEqual([]);
   });
