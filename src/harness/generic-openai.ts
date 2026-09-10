@@ -462,6 +462,19 @@ function readToolCalls(message: Record<string, unknown>): ToolCall[] {
   return calls;
 }
 
+const REASONING_EFFORTS = new Set(['none', 'low', 'medium', 'high']);
+
+/**
+ * `args` is user configuration, not an arbitrary provider-body passthrough. Keep the
+ * allowlist tight so a config cannot smuggle endpoint-specific controls into a request.
+ */
+function requestOptions(args: Record<string, unknown>): Record<string, string> {
+  const reasoningEffort = readString(args['reasoning_effort']);
+  return reasoningEffort && REASONING_EFFORTS.has(reasoningEffort)
+    ? { reasoning_effort: reasoningEffort }
+    : {};
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // The loop
 // ─────────────────────────────────────────────────────────────────────────────
@@ -520,7 +533,7 @@ export async function runGenericOpenAI(ctx: RunContext, signal?: AbortSignal): P
     const data = await chat(
       url,
       apiKey,
-      { model: ctx.model, messages, tools: TOOLS, tool_choice: 'auto' },
+      { model: ctx.model, messages, tools: TOOLS, tool_choice: 'auto', ...requestOptions(ctx.args) },
       remaining,
       diagnostics,
       signal,

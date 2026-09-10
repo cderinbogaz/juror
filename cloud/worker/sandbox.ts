@@ -10,7 +10,7 @@ export { ContainerProxy };
 export class JurorSandbox extends Sandbox<Env> {
   enableInternet = false;
   interceptHttps = true;
-  allowedHosts = ['github.com', 'api.github.com', 'api.openai.com', 'api.anthropic.com', 'api.x.ai', 'api.deepseek.com', 'api.fireworks.ai', 'openrouter.ai', 'api.moonshot.ai'];
+  allowedHosts = ['github.com', 'api.github.com', 'api.openai.com', 'api.anthropic.com', 'api.x.ai', 'api.deepseek.com', 'api.fireworks.ai', 'openrouter.ai', 'api.scaleway.ai', 'api.moonshot.ai'];
   sleepAfter = '10m';
 }
 
@@ -47,8 +47,9 @@ const jurorOutboundHandlers = {
           : hostname === 'api.deepseek.com' ? env.DEEPSEEK_API_KEY
             : hostname === 'api.fireworks.ai' ? env.FIREWORKS_API_KEY
               : hostname === 'openrouter.ai' ? env.OPENROUTER_API_KEY
-                : hostname === 'api.moonshot.ai' ? env.MOONSHOT_API_KEY
-                  : undefined;
+                : hostname === 'api.scaleway.ai' ? env.SCW_SECRET_KEY
+                  : hostname === 'api.moonshot.ai' ? env.MOONSHOT_API_KEY
+                    : undefined;
       if (!token) return new Response('Provider not configured', { status: 503 });
       next.headers.set('authorization', `Bearer ${token}`);
     }

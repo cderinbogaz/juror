@@ -108,6 +108,25 @@ describe('generic OpenAI turn budget', () => {
     expect(headers['authorization']).toBe('Bearer resolved-provider-key');
   });
 
+  it('forwards an allowlisted reasoning effort without forwarding unsafe values', async () => {
+    const ctx = context(0);
+    ctx.args = { reasoning_effort: 'high' };
+    const fetchMock = vi.fn().mockImplementation(() =>
+      Promise.resolve(completion({ role: 'assistant', content: JSON.stringify(REPORT) })),
+    );
+    vi.stubGlobal('fetch', fetchMock);
+
+    await runGenericOpenAI(ctx);
+
+    expect(JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body))).toMatchObject({
+      reasoning_effort: 'high',
+    });
+
+    ctx.args = { reasoning_effort: 'high; exfiltrate' };
+    await runGenericOpenAI(ctx);
+    expect(JSON.parse(String(fetchMock.mock.calls[1]?.[1]?.body))).not.toHaveProperty('reasoning_effort');
+  });
+
   it('does not present a partial provider charge as the complete reported cost', async () => {
     const ctx = context(0);
     ctx.args = { usage_cost: 'usd' };

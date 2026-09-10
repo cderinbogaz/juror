@@ -55,6 +55,13 @@ describe('pricing.json', () => {
     expect(pricing['gpt-5.6-terra']?.long_context?.output_per_mtok).toBe(22.5);
     expect(pricing['claude-opus-5']?.cache_write_per_mtok).toBe(6.25);
     expect(pricing['accounts/fireworks/models/deepseek-v4-flash-0731']?.input_per_mtok).toBe(0.14);
+    expect(pricing['scaleway/deepseek-v4-flash-0731']).toMatchObject({
+      input_per_mtok: 0.46456,
+      cache_read_per_mtok: 0.092912,
+      output_per_mtok: 0.92912,
+      currency: 'EUR',
+      usd_conversion_rate: 1.1614,
+    });
     expect(pricing['openrouter/openai/gpt-5.6-luna-20260709']).toMatchObject({
       input_per_mtok: 0.1,
       cache_read_per_mtok: 0.01,

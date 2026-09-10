@@ -72,11 +72,13 @@ runs:
         JUROR_FIREWORKS_API_KEY: ''
         JUROR_XAI_API_KEY: ''
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         ANTHROPIC_API_KEY: ''
         OPENAI_API_KEY: ''
         FIREWORKS_API_KEY: ''
         XAI_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
         GITHUB_TOKEN: ''
         GH_TOKEN: ''
       with:
@@ -94,11 +96,13 @@ runs:
         JUROR_FIREWORKS_API_KEY: ''
         JUROR_XAI_API_KEY: ''
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         ANTHROPIC_API_KEY: ''
         OPENAI_API_KEY: ''
         FIREWORKS_API_KEY: ''
         XAI_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
         GITHUB_TOKEN: ''
         GH_TOKEN: ''
         ACTION_PATH: ${{ github.action_path }}
@@ -123,11 +127,13 @@ runs:
         JUROR_FIREWORKS_API_KEY: ''
         JUROR_XAI_API_KEY: ''
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         ANTHROPIC_API_KEY: ''
         OPENAI_API_KEY: ''
         FIREWORKS_API_KEY: ''
         XAI_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
         GITHUB_TOKEN: ''
         GH_TOKEN: ''
       with:
@@ -146,11 +152,13 @@ runs:
         JUROR_FIREWORKS_API_KEY: ''
         JUROR_XAI_API_KEY: ''
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         ANTHROPIC_API_KEY: ''
         OPENAI_API_KEY: ''
         FIREWORKS_API_KEY: ''
         XAI_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
         GITHUB_TOKEN: ''
         GH_TOKEN: ''
       run: |
@@ -169,7 +177,9 @@ runs:
         OPENCODE_SPEC: ${{ inputs.opencode-version }}
         KIMI_CODE_SPEC: ${{ inputs.kimi-code-version }}
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
       run: |
         set -euo pipefail
         HAS_ANTHROPIC="${JUROR_ANTHROPIC_API_KEY:-${ANTHROPIC_API_KEY:-}}"
@@ -198,11 +208,13 @@ runs:
         JUROR_FIREWORKS_API_KEY: ''
         JUROR_XAI_API_KEY: ''
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         ANTHROPIC_API_KEY: ''
         OPENAI_API_KEY: ''
         FIREWORKS_API_KEY: ''
         XAI_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
         GITHUB_TOKEN: ''
         GH_TOKEN: ''
       with:
@@ -221,7 +233,9 @@ runs:
         KIMI_CODE_SPEC: ${{ inputs.kimi-code-version }}
         HARNESS_ROOT: ${{ runner.temp }}/juror-harnesses
         JUROR_OPENROUTER_API_KEY: ''
+        JUROR_SCALEWAY_API_KEY: ''
         OPENROUTER_API_KEY: ''
+        SCW_SECRET_KEY: ''
       run: |
         set -euo pipefail
         # A prefixed key wins, the bare vendor name is the pre-1.3 fallback. Gating on the
@@ -230,7 +244,7 @@ runs:
         HAS_OPENAI="${JUROR_OPENAI_API_KEY:-${OPENAI_API_KEY:-}}"
         HAS_FIREWORKS="${JUROR_FIREWORKS_API_KEY:-${FIREWORKS_API_KEY:-}}"
         HAS_XAI="${JUROR_XAI_API_KEY:-${XAI_API_KEY:-}}"
-        CLEAN_ENV=(env -u JUROR_ANTHROPIC_API_KEY -u JUROR_OPENAI_API_KEY -u JUROR_FIREWORKS_API_KEY -u JUROR_XAI_API_KEY -u JUROR_OPENROUTER_API_KEY -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u FIREWORKS_API_KEY -u XAI_API_KEY -u OPENROUTER_API_KEY -u GITHUB_TOKEN -u GH_TOKEN)
+        CLEAN_ENV=(env -u JUROR_ANTHROPIC_API_KEY -u JUROR_OPENAI_API_KEY -u JUROR_FIREWORKS_API_KEY -u JUROR_XAI_API_KEY -u JUROR_OPENROUTER_API_KEY -u JUROR_SCALEWAY_API_KEY -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u FIREWORKS_API_KEY -u XAI_API_KEY -u OPENROUTER_API_KEY -u SCW_SECRET_KEY -u GITHUB_TOKEN -u GH_TOKEN)
         mkdir -p "$HARNESS_ROOT"
         install_harness() {
           local binary="$1" spec="$2"

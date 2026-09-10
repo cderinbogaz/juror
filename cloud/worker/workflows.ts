@@ -208,7 +208,7 @@ async function executeInSandbox(env: Env, manifest: RunManifest): Promise<{ repo
   const started = Date.now();
   try {
     const targetHosts = qaTargetHosts(manifest.kind, manifest.allowedOrigins);
-    const baseHosts = ['github.com', 'api.github.com', 'api.openai.com', 'api.anthropic.com', 'api.x.ai', 'api.deepseek.com', 'api.fireworks.ai', 'openrouter.ai', 'api.moonshot.ai'];
+    const baseHosts = ['github.com', 'api.github.com', 'api.openai.com', 'api.anthropic.com', 'api.x.ai', 'api.deepseek.com', 'api.fireworks.ai', 'openrouter.ai', 'api.scaleway.ai', 'api.moonshot.ai'];
     await sandbox.setAllowedHosts([...new Set([...baseHosts, ...targetHosts])]);
     await sandbox.setOutboundByHosts<RunManifest>({
       'github.com': { method: 'authenticatedGithub', params: manifest },
@@ -219,6 +219,7 @@ async function executeInSandbox(env: Env, manifest: RunManifest): Promise<{ repo
       'api.deepseek.com': 'authenticatedProvider',
       'api.fireworks.ai': 'authenticatedProvider',
       'openrouter.ai': 'authenticatedProvider',
+      'api.scaleway.ai': 'authenticatedProvider',
       'api.moonshot.ai': 'authenticatedProvider',
       ...Object.fromEntries(targetHosts.map((host) => [host, { method: 'qaTarget', params: manifest }])),
     });
@@ -244,6 +245,7 @@ async function executeInSandbox(env: Env, manifest: RunManifest): Promise<{ repo
         JUROR_XAI_API_KEY: 'injected-by-juror-outbound-handler',
         JUROR_FIREWORKS_API_KEY: 'injected-by-juror-outbound-handler',
         JUROR_OPENROUTER_API_KEY: 'injected-by-juror-outbound-handler',
+        JUROR_SCALEWAY_API_KEY: 'injected-by-juror-outbound-handler',
         JUROR_QA_SECRETS_B64: btoa(JSON.stringify(Object.fromEntries(manifest.qaSecretRefs.map((reference) => [reference, `hosted-outbound-placeholder-${reference}`])))),
       },
     });

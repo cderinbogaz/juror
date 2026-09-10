@@ -139,7 +139,7 @@ Init
 
 Environment
   JUROR_ANTHROPIC_API_KEY  JUROR_OPENAI_API_KEY  JUROR_XAI_API_KEY  JUROR_FIREWORKS_API_KEY
-  JUROR_OPENROUTER_API_KEY
+  JUROR_OPENROUTER_API_KEY  JUROR_SCALEWAY_API_KEY
   The unprefixed names (ANTHROPIC_API_KEY, …) still work as a fallback. Prefer the
   prefixed ones and give Juror its own provider key, so review spend is billed and
   tracked separately from everything else that account does.

@@ -7,7 +7,7 @@ harnesses, and versioned pricing table. It describes tested Juror configuration,
 promise that an external provider will keep a model available. Run
 `npm run docs:compatibility` after changing any of those inputs.
 
-Pricing table last checked: **2026-08-31**.
+Pricing table last checked: **2026-09-09**.
 
 ## Built-in models
 
@@ -24,6 +24,7 @@ Pricing table last checked: **2026-08-31**.
 | MiniMax M3<br><sub>`minimax-m3`</sub> | Fireworks<br><sub>`JUROR_FIREWORKS_API_KEY`</sub> | opencode<br><sub>`opencode`</sub> | `accounts/fireworks/models/minimax-m3` | `balanced` | provider-reported per step; unknown on malformed output | [2026-08-31](https://models.dev/) |
 | DeepSeek V4 Flash<br><sub>`openrouter-deepseek-v4-flash`</sub> | OpenRouter<br><sub>`JUROR_OPENROUTER_API_KEY`</sub> | Generic OpenAI<br><sub>`generic-openai`</sub> | `deepseek/deepseek-v4-flash-0731` | `starter` | provider-reported; price fallback | [2026-08-11](https://openrouter.ai/api/v1/models) |
 | GPT-5.6 Luna<br><sub>`openrouter-gpt-5.6-luna`</sub> | OpenRouter<br><sub>`JUROR_OPENROUTER_API_KEY`</sub> | Generic OpenAI<br><sub>`generic-openai`</sub> | `openai/gpt-5.6-luna` | `starter` | provider-reported; price fallback | [2026-08-11](https://openrouter.ai/api/v1/models) |
+| DeepSeek V4 Flash (Scaleway)<br><sub>`scaleway-deepseek-v4-flash-0731`</sub> | Scaleway<br><sub>`JUROR_SCALEWAY_API_KEY`</sub> | Generic OpenAI<br><sub>`generic-openai`</sub> | `deepseek-v4-flash-0731` | `ultra` | provider-reported only when declared; estimated or unknown fallback | [2026-09-09](https://www.scaleway.com/en/pricing/model-as-a-service/) |
 
 ## Harness boundaries
 

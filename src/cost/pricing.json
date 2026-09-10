@@ -1,6 +1,6 @@
 {
   "$meta": {
-    "updated": "2026-08-31",
+    "updated": "2026-09-09",
     "note": "USD per million tokens (Mtok). Rates live under \"models\"; every top-level key starting with \"$\" is metadata and is ignored by loadPricing(), which also accepts a flat table so a hand-written override file need not know about the wrapper. Every entry carries the page it was read from and the date it was checked — a weekly CI job diffs this file against those pages and opens a PR on drift, because stale prices are the obvious failure mode for a tool whose pitch is cost honesty. Two things that are easy to get wrong and are deliberate here: (1) long_context is a cliff, not a slope — crossing threshold_input_tokens reprices the ENTIRE request, so a 199k-token Grok review costs half what a 201k one does; (2) cache writes are NOT free (OpenAI bills them at 1.25x uncached input for GPT-5.6 and later, Anthropic bills them too), so a missing cache_write_per_mtok means the provider publishes no separate write rate — grok-4.5 and the Fireworks models — and computeCost() falls back to that tier's input rate and says so in the receipt note. Omit a rate you do not know rather than inventing one: an absent entry makes computeCost() print \"unknown\", which is the only honest answer."
   },
   "models": {
@@ -132,6 +132,17 @@
       "context_window": 1000000,
       "source": "https://models.dev",
       "updated": "2026-08-06"
+    },
+    "scaleway/deepseek-v4-flash-0731": {
+      "input_per_mtok": 0.46456,
+      "output_per_mtok": 0.92912,
+      "cache_read_per_mtok": 0.092912,
+      "context_window": 1048576,
+      "source": "https://www.scaleway.com/en/pricing/model-as-a-service/",
+      "updated": "2026-09-09",
+      "currency": "EUR",
+      "usd_conversion_rate": 1.1614,
+      "conversion_source": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.pl.html"
     },
     "accounts/fireworks/models/glm-5p3": {
       "input_per_mtok": 1.4,

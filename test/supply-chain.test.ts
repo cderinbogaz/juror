@@ -117,7 +117,7 @@ describe('supply-chain policy', () => {
     expect(config).toContain('package-ecosystem: github-actions');
   });
 
-  it('keeps the OpenRouter key away from setup, cache, build, and installer steps', () => {
+  it('keeps OpenRouter and Scaleway keys away from setup, cache, build, and installer steps', () => {
     const action = parse(read('action.yml')) as {
       runs: { steps: { name?: string; env?: Record<string, string> }[] };
     };
@@ -127,6 +127,8 @@ describe('supply-chain policy', () => {
     for (const step of action.runs.steps.slice(0, reviewIndex)) {
       expect(step.env?.['JUROR_OPENROUTER_API_KEY'], step.name).toBe('');
       expect(step.env?.['OPENROUTER_API_KEY'], step.name).toBe('');
+      expect(step.env?.['JUROR_SCALEWAY_API_KEY'], step.name).toBe('');
+      expect(step.env?.['SCW_SECRET_KEY'], step.name).toBe('');
     }
   });
 
