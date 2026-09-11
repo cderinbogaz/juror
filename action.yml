@@ -65,7 +65,7 @@ runs:
   using: composite
   steps:
     - name: Set up Node
-      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
       env:
         JUROR_ANTHROPIC_API_KEY: ''
         JUROR_OPENAI_API_KEY: ''
@@ -120,7 +120,7 @@ runs:
 
     - name: Restore Juror build
       id: build-cache
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       env:
         JUROR_ANTHROPIC_API_KEY: ''
         JUROR_OPENAI_API_KEY: ''
@@ -201,7 +201,7 @@ runs:
 
     - name: Restore harnesses
       if: steps.harness-cache-key.outputs.enabled == 'true'
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       env:
         JUROR_ANTHROPIC_API_KEY: ''
         JUROR_OPENAI_API_KEY: ''

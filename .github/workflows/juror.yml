@@ -18,7 +18,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: runnerhut-linux-2vcpu
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Every ref and the complete commit graph, so base-revision policy and merge-base
           # resolution still work. `blob:none` only skips historical file contents, which are
@@ -29,7 +29,7 @@ jobs:
 
       # Never execute action code from the pull request while provider secrets are present.
       # Dependabot can deliberately update this immutable revision after the reviewed code lands.
-      - uses: juror-ai/juror@178a16d6fa3a1b868094bc4236d42fb8e442ea6a # v1.3.3
+      - uses: juror-ai/juror@5cbf6476764ebc81ef808769e9ecb18cfa432da8 # v1.4.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
